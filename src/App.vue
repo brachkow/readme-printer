@@ -35,7 +35,7 @@
       placeholder="https://raw.githubusercontent.com/"
       type="text"
       v-model="url" />
-    <button class="Loader__Button">Load</button>
+    <button @click="load" class="Loader__Button">Load</button>
   </header>
   <article ref="article" class="markdown-body" v-html="html"></article>
 </template>
