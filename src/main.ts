@@ -1,6 +1,10 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-
+import { inject } from '@vercel/analytics';
 import 'github-markdown-css';
 
-createApp(App).mount('#app');
+const app = createApp(App);
+
+inject();
+
+app.mount('#app');
