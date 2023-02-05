@@ -44,7 +44,7 @@
   }
 
   @media print {
-    *:not(markdown-body) {
+    .Loader {
       display: none;
     }
   }
