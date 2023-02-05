@@ -1,9 +1,12 @@
 <script setup lang="ts">
   import axios from 'axios';
   import { marked } from 'marked';
-  import { onMounted, ref } from 'vue';
+  import { onMounted, ref, nextTick } from 'vue';
+  import { useTitle } from '@vueuse/core';
 
+  const title = useTitle();
   const html = ref('');
+  const article = ref(null);
   const url = ref(
     'https://raw.githubusercontent.com/brachkow/readme-printer/main/README.md',
   );
@@ -12,6 +15,10 @@
     const markdown = (await axios.get(url.value)).data;
 
     html.value = marked.parse(markdown);
+
+    await nextTick();
+
+    title.value = article.value.firstChild.textContent;
   };
 
   onMounted(() => {
@@ -28,7 +35,7 @@
       v-model="url" />
     <button class="Loader__Button">Load</button>
   </header>
-  <article class="markdown-body" v-html="html"></article>
+  <article ref="article" class="markdown-body" v-html="html"></article>
 </template>
 
 <style lang="scss">
