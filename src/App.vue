@@ -6,7 +6,7 @@
 
   const title = useTitle();
   const html = ref('');
-  const article = ref(null);
+  const article = ref<null | HTMLElement>(null);
   const url = ref(
     'https://raw.githubusercontent.com/brachkow/readme-printer/main/README.md',
   );
@@ -18,7 +18,9 @@
 
     await nextTick();
 
-    title.value = article.value.firstChild.textContent;
+    if (article.value) {
+      title.value = article.value.firstChild?.textContent;
+    }
   };
 
   onMounted(() => {
