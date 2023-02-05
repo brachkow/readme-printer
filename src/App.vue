@@ -40,7 +40,7 @@
   <article ref="article" class="markdown-body" v-html="html"></article>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .Loader {
     border: 1px solid black;
     padding: 16px;
